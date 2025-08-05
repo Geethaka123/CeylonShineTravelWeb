@@ -1,0 +1,246 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Travel Agency Theme - Global Styles */
+@layer base {
+  * {
+    @apply border-gray-200;
+  }
+  
+  body {
+    @apply bg-travel-light text-travel-dark;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer components {
+  /* Glassmorphism Effect */
+  .glass {
+    @apply bg-white/20 backdrop-blur-md border border-white/30;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  }
+  
+  .glass-dark {
+    @apply bg-travel-dark/20 backdrop-blur-md border border-travel-dark/30;
+  }
+  
+  /* Travel-themed gradients */
+  .travel-gradient {
+    background: linear-gradient(135deg, #FF6B35 0%, #F59E0B 50%, #1E3A8A 100%);
+  }
+  
+  .ocean-gradient {
+    background: linear-gradient(135deg, #0EA5E9 0%, #1E3A8A 50%, #059669 100%);
+  }
+  
+  .sunset-gradient {
+    background: linear-gradient(135deg, #FB7185 0%, #F59E0B 50%, #FF6B35 100%);
+  }
+  
+  .beach-gradient {
+    background: linear-gradient(135deg, #FEF3C7 0%, #FCD34D 50%, #F59E0B 100%);
+  }
+  
+  .forest-gradient {
+    background: linear-gradient(135deg, #059669 0%, #10B981 50%, #34D399 100%);
+  }
+  
+  .desert-gradient {
+    background: linear-gradient(135deg, #FCD34D 0%, #F59E0B 50%, #D97706 100%);
+  }
+  
+  /* Travel-themed text gradients */
+  .text-travel-gradient {
+    background: linear-gradient(135deg, #FF6B35, #F59E0B, #1E3A8A);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .text-ocean-gradient {
+    background: linear-gradient(135deg, #0EA5E9, #1E3A8A, #059669);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .text-sunset-gradient {
+    background: linear-gradient(135deg, #FB7185, #F59E0B, #FF6B35);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Travel-themed buttons */
+  .btn-primary {
+    @apply bg-travel-primary hover:bg-travel-warning text-travel-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
+  }
+  
+  .btn-secondary {
+    @apply bg-travel-secondary hover:bg-travel-ocean text-travel-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
+  }
+  
+  .btn-accent {
+    @apply bg-travel-accent hover:bg-travel-desert text-travel-dark font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-travel-secondary text-travel-secondary hover:bg-travel-secondary hover:text-travel-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105;
+  }
+  
+  /* Travel-themed cards */
+  .card-travel {
+    @apply bg-travel-beach/50 backdrop-blur-sm border border-travel-accent/20 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105;
+  }
+  
+  .card-ocean {
+    @apply bg-travel-ocean/10 backdrop-blur-sm border border-travel-ocean/20 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105;
+  }
+  
+  .card-forest {
+    @apply bg-travel-forest/10 backdrop-blur-sm border border-travel-forest/20 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105;
+  }
+  
+  .card-sunset {
+    @apply bg-travel-sunset/10 backdrop-blur-sm border border-travel-sunset/20 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105;
+  }
+  
+  /* Travel-themed navigation */
+  .nav-link {
+    @apply text-travel-dark hover:text-travel-primary transition-colors duration-300 relative;
+  }
+  
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-travel-primary transition-all duration-300;
+  }
+  
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+  
+  /* Travel-themed form elements */
+  .input-travel {
+    @apply bg-travel-white/80 border border-travel-beach rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-travel-primary focus:border-transparent transition-all duration-300;
+  }
+  
+  /* Travel-themed animations */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .animate-glow-travel {
+    animation: glow-travel 2s ease-in-out infinite alternate;
+  }
+  
+  .animate-wiggle {
+    animation: wiggle 1s ease-in-out infinite;
+  }
+  
+  @keyframes glow-travel {
+    0% { box-shadow: 0 0 5px #FF6B35, 0 0 10px #FF6B35, 0 0 15px #FF6B35; }
+    100% { box-shadow: 0 0 10px #FF6B35, 0 0 20px #FF6B35, 0 0 30px #FF6B35; }
+  }
+  
+  /* Travel-themed scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-travel-beach/30;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-travel-primary rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-travel-warning;
+  }
+  
+  /* Travel-themed selection */
+  ::selection {
+    @apply bg-travel-accent text-travel-dark;
+  }
+  
+  /* Travel-themed focus styles */
+  .focus-travel:focus {
+    @apply outline-none ring-2 ring-travel-primary ring-offset-2;
+  }
+  
+  /* Travel-themed hover effects */
+  .hover-travel:hover {
+    @apply transform scale-105 transition-transform duration-300;
+  }
+  
+  /* Travel-themed text shadows */
+  .text-shadow-travel {
+    text-shadow: 2px 2px 4px rgba(31, 41, 55, 0.3);
+  }
+  
+  /* Travel-themed box shadows */
+  .shadow-travel {
+    box-shadow: 0 10px 25px rgba(255, 107, 53, 0.2);
+  }
+  
+  .shadow-ocean {
+    box-shadow: 0 10px 25px rgba(14, 165, 233, 0.2);
+  }
+  
+  .shadow-sunset {
+    box-shadow: 0 10px 25px rgba(251, 113, 133, 0.2);
+  }
+  
+  .shadow-beach {
+    box-shadow: 0 10px 25px rgba(254, 243, 199, 0.2);
+  }
+  
+  /* Travel-themed badges */
+  .badge-travel {
+    @apply bg-travel-primary text-travel-white px-3 py-1 rounded-full text-sm font-semibold;
+  }
+  
+  .badge-ocean {
+    @apply bg-travel-ocean text-travel-white px-3 py-1 rounded-full text-sm font-semibold;
+  }
+  
+  .badge-forest {
+    @apply bg-travel-forest text-travel-white px-3 py-1 rounded-full text-sm font-semibold;
+  }
+  
+  .badge-sunset {
+    @apply bg-travel-sunset text-travel-white px-3 py-1 rounded-full text-sm font-semibold;
+  }
+  
+  /* Travel-themed backgrounds */
+  .bg-travel-pattern {
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.05) 0%, transparent 50%);
+  }
+  
+  /* Travel-themed borders */
+  .border-travel-gradient {
+    border-image: linear-gradient(135deg, #FF6B35, #F59E0B, #1E3A8A) 1;
+  }
+  
+  /* Travel-themed icons */
+  .icon-travel {
+    @apply text-travel-primary;
+  }
+  
+  .icon-ocean {
+    @apply text-travel-ocean;
+  }
+  
+  .icon-forest {
+    @apply text-travel-forest;
+  }
+  
+  .icon-sunset {
+    @apply text-travel-sunset;
+  }
+} 
