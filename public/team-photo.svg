@@ -1,0 +1,11 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#f3f4f6"/>
+  <circle cx="120" cy="120" r="40" fill="#10b981"/>
+  <circle cx="200" cy="120" r="40" fill="#f59e0b"/>
+  <circle cx="280" cy="120" r="40" fill="#8b5cf6"/>
+  <path d="M60 220 C60 200 80 180 120 180 C160 180 180 200 180 220" fill="#10b981"/>
+  <path d="M140 220 C140 200 160 180 200 180 C240 180 260 200 260 220" fill="#f59e0b"/>
+  <path d="M220 220 C220 200 240 180 280 180 C320 180 340 200 340 220" fill="#8b5cf6"/>
+  <text x="200" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#6b7280">Team Photo</text>
+  <text x="200" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#9ca3af">Replace with actual photo</text>
+</svg>

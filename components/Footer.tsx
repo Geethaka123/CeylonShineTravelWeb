@@ -1,50 +1,60 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { Facebook, Twitter, Instagram, Linkedin, Youtube, Mail, Phone, MapPin, ArrowUp } from 'lucide-react';
+import { motion } from "framer-motion";
+import {
+  Facebook,
+  Twitter,
+  Instagram,
+  Linkedin,
+  Youtube,
+  Mail,
+  Phone,
+  MapPin,
+  ArrowUp,
+} from "lucide-react";
 
 const Footer = () => {
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const footerLinks = {
     company: [
-      { name: 'About Us', href: '#' },
-      { name: 'Our Team', href: '#' },
-      { name: 'Careers', href: '#' },
-      { name: 'Press', href: '#' },
-      { name: 'Blog', href: '#' }
+      { name: "About Us", href: "/about" },
+      { name: "Our Team", href: "#" },
+      { name: "Careers", href: "#" },
+      { name: "Press", href: "#" },
+      { name: "Blog", href: "#" },
     ],
     services: [
-      { name: 'Flight Booking', href: '#' },
-      { name: 'Hotel Reservations', href: '#' },
-      { name: 'Car Rentals', href: '#' },
-      { name: 'Tour Packages', href: '#' },
-      { name: 'Travel Insurance', href: '#' }
+      { name: "Flight Booking", href: "#" },
+      { name: "Hotel Reservations", href: "#" },
+      { name: "Car Rentals", href: "#" },
+      { name: "Tour Packages", href: "#" },
+      { name: "Travel Insurance", href: "#" },
     ],
     destinations: [
-      { name: 'Europe', href: '#' },
-      { name: 'Asia', href: '#' },
-      { name: 'Americas', href: '#' },
-      { name: 'Africa', href: '#' },
-      { name: 'Oceania', href: '#' }
+      { name: "Europe", href: "#" },
+      { name: "Asia", href: "#" },
+      { name: "Americas", href: "#" },
+      { name: "Africa", href: "#" },
+      { name: "Oceania", href: "#" },
     ],
     support: [
-      { name: 'Help Center', href: '#' },
-      { name: 'Contact Us', href: '#' },
-      { name: 'Travel Tips', href: '#' },
-      { name: 'Emergency Support', href: '#' },
-      { name: 'FAQ', href: '#' }
-    ]
+      { name: "Help Center", href: "#" },
+      { name: "Contact Us", href: "#" },
+      { name: "Travel Tips", href: "#" },
+      { name: "Emergency Support", href: "#" },
+      { name: "FAQ", href: "#" },
+    ],
   };
 
   const socialLinks = [
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Youtube, href: '#', label: 'YouTube' }
+    { icon: Facebook, href: "#", label: "Facebook" },
+    { icon: Twitter, href: "#", label: "Twitter" },
+    { icon: Instagram, href: "#", label: "Instagram" },
+    { icon: Linkedin, href: "#", label: "LinkedIn" },
+    { icon: Youtube, href: "#", label: "YouTube" },
   ];
 
   return (
@@ -68,13 +78,14 @@ const Footer = () => {
               className="mb-6"
             >
               <h3 className="text-2xl font-bold text-sky-white mb-4">
-                <span className="text-travel-gradient">Travel</span>
-                <span className="text-sky-white">Agency</span>
+                <span className="text-travel-gradient">Ceylon</span>
+                <span className="text-sky-white">Shine</span>
               </h3>
               <p className="text-sky-white/80 mb-6 leading-relaxed">
-                We specialize in creating unforgettable travel experiences. From exotic destinations 
-                to luxury accommodations, we make your travel dreams come true with personalized 
-                service and expert planning.
+                We specialize in creating unforgettable travel experiences. From
+                exotic destinations to luxury accommodations, we make your
+                travel dreams come true with personalized service and expert
+                planning.
               </p>
             </motion.div>
 
@@ -87,21 +98,21 @@ const Footer = () => {
             >
               <div className="flex items-center space-x-3 text-sky-white/80 hover:text-sunshine-yellow transition-colors duration-300">
                 <Phone className="w-4 h-4" />
-                <span>+1 (555) 123-4567</span>
+                <span>+94 (77) 993-3765</span>
               </div>
               <div className="flex items-center space-x-3 text-sky-white/80 hover:text-sunshine-yellow transition-colors duration-300">
                 <Mail className="w-4 h-4" />
-                <span>info@travelagency.com</span>
+                <span>ceylonshinetravel@gmail.com</span>
               </div>
               <div className="flex items-center space-x-3 text-sky-white/80 hover:text-sunshine-yellow transition-colors duration-300">
                 <MapPin className="w-4 h-4" />
-                <span>123 Travel Street, City, Country</span>
+                <span>Thithagalle, Ahangama, Sri Lanka, 80650</span>
               </div>
             </motion.div>
           </div>
 
           {/* Footer Links */}
-          {Object.entries(footerLinks).map(([category, links], categoryIndex) => (
+          {/* {Object.entries(footerLinks).map(([category, links], categoryIndex) => (
             <motion.div
               key={category}
               initial={{ opacity: 0, y: 20 }}
@@ -129,7 +140,7 @@ const Footer = () => {
                 ))}
               </ul>
             </motion.div>
-          ))}
+          ))} */}
         </div>
 
         {/* Newsletter Subscription */}
@@ -144,7 +155,8 @@ const Footer = () => {
               Stay Updated
             </h3>
             <p className="text-sky-white/80">
-              Subscribe to our newsletter for exclusive travel deals and destination inspiration.
+              Subscribe to our newsletter for exclusive travel deals and
+              destination inspiration.
             </p>
           </div>
           <div className="max-w-md mx-auto">
@@ -175,7 +187,7 @@ const Footer = () => {
               transition={{ duration: 0.6, delay: 0.6 }}
               className="text-sky-white/70 text-sm"
             >
-              © 2024 Travel Agency. All rights reserved.
+              © 2025 CeylonShine Travel Agency. All rights reserved.
             </motion.div>
 
             {/* Social Links */}
@@ -218,4 +230,4 @@ const Footer = () => {
   );
 };
 
-export default Footer; 
+export default Footer;

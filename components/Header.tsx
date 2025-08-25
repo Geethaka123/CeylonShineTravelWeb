@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Compass, Plane } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, Compass, Plane } from "lucide-react";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -13,16 +13,16 @@ const Header = () => {
       setIsScrolled(window.scrollY > 50);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'Destinations', href: '#destinations' },
-    { name: 'Services', href: '#services' },
-    { name: 'About', href: '#about' },
-    { name: 'Contact', href: '#contact' },
+    { name: "Home", href: "#home" },
+    { name: "Destinations", href: "#destinations" },
+    { name: "Services", href: "#services" },
+    { name: "About", href: "#about" },
+    { name: "Contact", href: "#contact" },
   ];
 
   return (
@@ -30,9 +30,9 @@ const Header = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-travel-secondary/95 backdrop-blur-md shadow-lg' 
-          : 'bg-transparent'
+        isScrolled
+          ? "bg-travel-secondary/95 backdrop-blur-md shadow-lg"
+          : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -61,7 +61,9 @@ const Header = () => {
                 <span className="text-travel-gradient">Wander</span>
                 <span className="text-travel-white">lust</span>
               </span>
-              <span className="text-xs text-travel-accent font-medium">Travel Agency</span>
+              <span className="text-xs text-travel-accent font-medium">
+                Travel Agency
+              </span>
             </div>
           </motion.div>
 
@@ -131,7 +133,7 @@ const Header = () => {
           {isMobileMenuOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
+              animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
               className="md:hidden bg-travel-secondary/95 backdrop-blur-md rounded-lg mt-2 overflow-hidden"
@@ -169,4 +171,4 @@ const Header = () => {
   );
 };
 
-export default Header; 
+export default Header;
