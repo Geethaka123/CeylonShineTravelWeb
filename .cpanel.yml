@@ -1,11 +1,12 @@
 deployment:
   tasks:
     - export APPPATH=/home/ceylysas/repositories/CeylonShineTravelWeb
-    - export DEPLOYPATH=/home/ceylysas/public_html
+    - export NODE_ENV=production
 
     - cd $APPPATH
-    - rm -rf .next out
+    - rm -rf .next
     - npm ci
     - npm run build
 
-    - rsync -av --delete out/ $DEPLOYPATH/
+    # restart passenger
+    - touch tmp/restart.txt
