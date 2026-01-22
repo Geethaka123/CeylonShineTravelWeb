@@ -63,7 +63,7 @@ const Header = () => {
                 <span className="text-ceylon-teal"> Travel</span>
               </span>
               <span className="text-xs text-ceylon-golden font-medium">
-                Discover122222222 Sri Lanka
+                Discover1222222 Sri Lanka
               </span>
             </div>
           </motion.div>
