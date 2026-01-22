@@ -1,16 +1,22 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
+// ✅ Keep metadata clean
 export const metadata: Metadata = {
   title: "CeylonShine Travel Agency - Your Journey Begins Here",
   description:
     "Discover amazing destinations, book unforgettable trips, and create memories that last a lifetime with our expert travel services.",
   keywords: "travel, agency, vacation, booking, destinations, tours, adventure",
   authors: [{ name: "CeylonShine Travel Agency" }],
-  viewport: "width=device-width, initial-scale=1",
+};
+
+// ✅ Move viewport to its own export
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

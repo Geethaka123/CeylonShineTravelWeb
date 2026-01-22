@@ -31,7 +31,7 @@ const Header = () => {
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-travel-secondary/95 backdrop-blur-md shadow-lg"
+          ? "bg-ceylon-navy/95 backdrop-blur-md shadow-lg"
           : "bg-transparent"
       }`}
     >
@@ -48,21 +48,22 @@ const Header = () => {
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                 className="w-10 h-10 bg-travel-gradient rounded-full flex items-center justify-center shadow-lg"
               >
-                <Compass className="w-6 h-6 text-travel-white" />
+                <Compass className="w-6 h-6 text-ceylon-white" />
               </motion.div>
               <motion.div
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="absolute -top-1 -right-1 w-4 h-4 bg-travel-accent rounded-full"
+                className="absolute -top-1 -right-1 w-4 h-4 bg-ceylon-golden rounded-full"
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-2xl font-bold text-travel-white">
-                <span className="text-travel-gradient">Wander</span>
-                <span className="text-travel-white">lust</span>
+              <span className="text-2xl font-bold text-ceylon-white">
+                <span className="text-ceylon-golden">Ceylon</span>
+                <span className="text-ceylon-white"> Shine</span>
+                <span className="text-ceylon-teal"> Travel</span>
               </span>
-              <span className="text-xs text-travel-accent font-medium">
-                Travel Agency
+              <span className="text-xs text-ceylon-golden font-medium">
+                Discover Sri Lanka
               </span>
             </div>
           </motion.div>
@@ -76,16 +77,16 @@ const Header = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="text-travel-white hover:text-travel-accent transition-colors duration-300 relative group nav-link"
+                className="text-ceylon-white hover:text-ceylon-golden transition-colors duration-300 relative group nav-link"
               >
                 {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-travel-accent transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-ceylon-golden transition-all duration-300 group-hover:w-full"></span>
               </motion.a>
             ))}
           </nav>
 
           {/* CTA Button */}
-          <motion.button
+          {/* <motion.button
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             whileHover={{ scale: 1.05 }}
@@ -94,13 +95,13 @@ const Header = () => {
           >
             <Plane className="w-4 h-4" />
             <span>Book Now</span>
-          </motion.button>
+          </motion.button> */}
 
           {/* Mobile Menu Button */}
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg bg-travel-secondary/20 backdrop-blur-sm border border-travel-white/20"
+            className="md:hidden p-2 rounded-lg bg-ceylon-navy/20 backdrop-blur-sm border border-ceylon-white/20"
           >
             <AnimatePresence mode="wait">
               {isMobileMenuOpen ? (
@@ -111,7 +112,7 @@ const Header = () => {
                   exit={{ rotate: 90, opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <X className="w-6 h-6 text-travel-white" />
+                  <X className="w-6 h-6 text-ceylon-white" />
                 </motion.div>
               ) : (
                 <motion.div
@@ -121,7 +122,7 @@ const Header = () => {
                   exit={{ rotate: -90, opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Menu className="w-6 h-6 text-travel-white" />
+                  <Menu className="w-6 h-6 text-ceylon-white" />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -136,7 +137,7 @@ const Header = () => {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden bg-travel-secondary/95 backdrop-blur-md rounded-lg mt-2 overflow-hidden"
+              className="md:hidden bg-ceylon-navy/95 backdrop-blur-md rounded-lg mt-2 overflow-hidden"
             >
               <div className="px-4 py-6 space-y-4">
                 {navItems.map((item, index) => (
@@ -147,12 +148,12 @@ const Header = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block text-travel-white hover:text-travel-accent transition-colors duration-300 py-2 border-b border-travel-white/10 last:border-b-0"
+                    className="block text-ceylon-white hover:text-ceylon-golden transition-colors duration-300 py-2 border-b border-ceylon-white/10 last:border-b-0"
                   >
                     {item.name}
                   </motion.a>
                 ))}
-                <motion.button
+                {/* <motion.button
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: navItems.length * 0.1 }}
@@ -161,7 +162,7 @@ const Header = () => {
                 >
                   <Plane className="w-4 h-4" />
                   <span>Book Now</span>
-                </motion.button>
+                </motion.button> */}
               </div>
             </motion.div>
           )}

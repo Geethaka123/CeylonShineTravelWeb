@@ -34,11 +34,11 @@ const Footer = () => {
       { name: "Travel Insurance", href: "#" },
     ],
     destinations: [
-      { name: "Europe", href: "#" },
-      { name: "Asia", href: "#" },
-      { name: "Americas", href: "#" },
-      { name: "Africa", href: "#" },
-      { name: "Oceania", href: "#" },
+      { name: "Sigiriya", href: "#" },
+      { name: "Galle Fort", href: "#" },
+      { name: "Ella", href: "#" },
+      { name: "Mirissa", href: "#" },
+      { name: "Kandy", href: "#" },
     ],
     support: [
       { name: "Help Center", href: "#" },
@@ -58,12 +58,12 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gradient-to-br from-palm-green via-ocean-blue to-palm-green relative overflow-hidden">
+    <footer className="bg-gradient-to-br from-ceylon-leaf via-ceylon-navy to-ceylon-leaf relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-20 w-32 h-32 bg-sunshine-yellow rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-20 w-40 h-40 bg-sunset-orange rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-teal-green rounded-full blur-3xl"></div>
+        <div className="absolute top-20 left-20 w-32 h-32 bg-ceylon-golden rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-20 w-40 h-40 bg-ceylon-brown rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-ceylon-teal rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -77,15 +77,16 @@ const Footer = () => {
               transition={{ duration: 0.6 }}
               className="mb-6"
             >
-              <h3 className="text-2xl font-bold text-sky-white mb-4">
-                <span className="text-travel-gradient">Ceylon</span>
-                <span className="text-sky-white">Shine</span>
+              <h3 className="text-2xl font-bold text-ceylon-white mb-4">
+                <span className="text-ceylon-golden">Ceylon</span>
+                <span className="text-ceylon-white"> Shine</span>
+                <span className="text-ceylon-teal"> Travel</span>
               </h3>
-              <p className="text-sky-white/80 mb-6 leading-relaxed">
-                We specialize in creating unforgettable travel experiences. From
-                exotic destinations to luxury accommodations, we make your
-                travel dreams come true with personalized service and expert
-                planning.
+              <p className="text-ceylon-white/80 mb-6 leading-relaxed">
+                We specialize in creating unforgettable travel experiences
+                across Sri Lanka. From ancient temples to pristine beaches, we
+                make your travel dreams come true with personalized service and
+                expert planning.
               </p>
             </motion.div>
 
@@ -96,17 +97,17 @@ const Footer = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="space-y-3"
             >
-              <div className="flex items-center space-x-3 text-sky-white/80 hover:text-sunshine-yellow transition-colors duration-300">
+              <div className="flex items-center space-x-3 text-ceylon-white/80 hover:text-ceylon-golden transition-colors duration-300">
                 <Phone className="w-4 h-4" />
-                <span>+94 (77) 993-3765</span>
+                <span>+94 77 993 3765</span>
               </div>
-              <div className="flex items-center space-x-3 text-sky-white/80 hover:text-sunshine-yellow transition-colors duration-300">
+              {/* <div className="flex items-center space-x-3 text-ceylon-white/80 hover:text-ceylon-golden transition-colors duration-300">
                 <Mail className="w-4 h-4" />
-                <span>ceylonshinetravel@gmail.com</span>
-              </div>
-              <div className="flex items-center space-x-3 text-sky-white/80 hover:text-sunshine-yellow transition-colors duration-300">
+                <span>info@ceylonshinetravel.com</span>
+              </div> */}
+              <div className="flex items-center space-x-3 text-ceylon-white/80 hover:text-ceylon-golden transition-colors duration-300">
                 <MapPin className="w-4 h-4" />
-                <span>Thithagalle, Ahangama, Sri Lanka, 80650</span>
+                <span>Ahangama, Southern Province, Sri Lanka</span>
               </div>
             </motion.div>
           </div>
@@ -119,7 +120,7 @@ const Footer = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 + categoryIndex * 0.1 }}
             >
-              <h4 className="text-lg font-semibold text-sky-white mb-4 capitalize">
+              <h4 className="text-lg font-semibold text-ceylon-white mb-4 capitalize">
                 {category}
               </h4>
               <ul className="space-y-2">
@@ -132,7 +133,7 @@ const Footer = () => {
                   >
                     <a
                       href={link.href}
-                      className="text-sky-white/70 hover:text-sunshine-yellow transition-colors duration-300 text-sm"
+                      className="text-ceylon-white/70 hover:text-ceylon-golden transition-colors duration-300 text-sm"
                     >
                       {link.name}
                     </a>
@@ -144,19 +145,19 @@ const Footer = () => {
         </div>
 
         {/* Newsletter Subscription */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
           className="glass rounded-2xl p-8 mb-12"
         >
           <div className="text-center mb-6">
-            <h3 className="text-2xl font-bold text-sky-white mb-2">
+            <h3 className="text-2xl font-bold text-ceylon-white mb-2">
               Stay Updated
             </h3>
-            <p className="text-sky-white/80">
+            <p className="text-ceylon-white/80">
               Subscribe to our newsletter for exclusive travel deals and
-              destination inspiration.
+              destination inspiration from Sri Lanka.
             </p>
           </div>
           <div className="max-w-md mx-auto">
@@ -164,30 +165,30 @@ const Footer = () => {
               <input
                 type="email"
                 placeholder="Enter your email address"
-                className="flex-1 px-4 py-3 bg-sky-white/10 border border-sky-white/20 rounded-lg text-sky-white placeholder-sky-white/50 focus:outline-none focus:ring-2 focus:ring-sunshine-yellow focus:border-transparent transition-all duration-300"
+                className="flex-1 px-4 py-3 bg-ceylon-white/10 border border-ceylon-white/20 rounded-lg text-ceylon-white placeholder-ceylon-white/50 focus:outline-none focus:ring-2 focus:ring-ceylon-golden focus:border-transparent transition-all duration-300"
               />
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-sunshine-yellow to-sunset-orange text-sky-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg"
+                className="bg-gradient-to-r from-ceylon-golden to-ceylon-brown text-ceylon-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg"
               >
                 Subscribe
               </motion.button>
             </div>
           </div>
-        </motion.div>
+        </motion.div> */}
 
         {/* Bottom Section */}
-        <div className="border-t border-sky-white/20 pt-8">
+        <div className="border-t border-ceylon-white/20 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             {/* Copyright */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-sky-white/70 text-sm"
+              className="text-ceylon-white/70 text-sm"
             >
-              © 2025 CeylonShine Travel Agency. All rights reserved.
+              © 2025 Ceylon Shine Travel. All rights reserved.
             </motion.div>
 
             {/* Social Links */}
@@ -205,7 +206,7 @@ const Footer = () => {
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4, delay: 0.8 + index * 0.1 }}
                   whileHover={{ scale: 1.2, rotate: 5 }}
-                  className="w-10 h-10 bg-sky-white/10 backdrop-blur-sm border border-sky-white/20 rounded-full flex items-center justify-center text-sky-white hover:text-sunshine-yellow hover:bg-sky-white/20 transition-all duration-300"
+                  className="w-10 h-10 bg-ceylon-white/10 backdrop-blur-sm border border-ceylon-white/20 rounded-full flex items-center justify-center text-ceylon-white hover:text-ceylon-golden hover:bg-ceylon-white/20 transition-all duration-300"
                 >
                   <social.icon className="w-5 h-5" />
                 </motion.a>
@@ -222,7 +223,7 @@ const Footer = () => {
         whileInView={{ opacity: 1, scale: 1 }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-sunshine-yellow to-sunset-orange rounded-full flex items-center justify-center text-sky-white shadow-lg hover:shadow-xl transition-all duration-300 z-50"
+        className="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-ceylon-golden to-ceylon-brown rounded-full flex items-center justify-center text-ceylon-white shadow-lg hover:shadow-xl transition-all duration-300 z-50"
       >
         <ArrowUp className="w-6 h-6" />
       </motion.button>
