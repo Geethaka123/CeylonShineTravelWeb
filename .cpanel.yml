@@ -1,5 +1,11 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/ceylysas/public_html/
-    - /bin/cp -R * $DEPLOYPATH
+    - export APPPATH=/home/ceylysas/repositories/CeylonShineTravelWeb
+    - export DEPLOYPATH=/home/ceylysas/public_html
+
+    - cd $APPPATH
+    - npm install --production
+    - npm run build
+
+    - /bin/rsync -av --delete .next public node_modules package.json next.config.js $DEPLOYPATH
