@@ -1,15 +1,14 @@
-// server.js
-const { createServer } = require('http');
-const next = require('next');
 
-const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dev });
-const handle = app.getRequestHandler();
+const express = require("express");
+const app = express();
 
-app.prepare().then(() => {
-  createServer((req, res) => {
-    handle(req, res);
-  }).listen(3000, () => {
-    console.log('> Ready on http://localhost:3000');
-  });
+// Passenger health check fix
+app.get("/health", (req, res) => {
+  res.status(200).type("text/html").send("OK");
+});
+
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log("Server running on port", port);
 });

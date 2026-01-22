@@ -8,5 +8,5 @@ deployment:
     - npm ci
     - npm run build
 
-    # restart passenger
+    # restart Node app (Passenger)
     - touch tmp/restart.txt
