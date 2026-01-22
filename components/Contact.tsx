@@ -461,7 +461,8 @@ This message was sent from the Ceylon Shine Travel website contact form.
                 variants={itemVariants}
                 whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
                 whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-                disabled={isSubmitting}
+                // disabled={isSubmitting}
+                disabled={true} // disabled={true} to test
                 className={`btn-primary w-full flex items-center justify-center space-x-2 ${
                   isSubmitting ? "opacity-70 cursor-not-allowed" : ""
                 }`}
