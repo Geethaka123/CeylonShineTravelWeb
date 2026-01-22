@@ -5,15 +5,7 @@ deployment:
     - export NODE_ENV=production
 
     - cd $APPPATH
-
-    # Clean old build artifacts
     - rm -rf .next
-
-    # Install dependencies
     - npm ci
-
-    # Build Next.js
     - npm run build
-
-    # Restart Node.js app (cPanel way)
     - touch tmp/restart.txt
