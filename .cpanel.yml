@@ -1,41 +1,19 @@
 ---
 deployment:
   tasks:
-    # Set environment variables
     - export APPPATH=/home/ceylysas/repositories/CeylonShineTravelWeb
-    - export DEPLOYPATH=/home/ceylysas/public_html
     - export NODE_ENV=production
 
-    # Navigate to application directory
     - cd $APPPATH
 
-    # Pull latest changes from repository
-    - git pull ceylon-main 
-
-    # Clear npm cache and remove old dependencies
-    - rm -rf node_modules
+    # Clean old build artifacts
     - rm -rf .next
-    - npm cache clean --force
 
-    # Install dependencies with production flag
-    - npm ci --production=false
+    # Install dependencies
+    - npm ci
 
-    # Build the Next.js application
+    # Build Next.js
     - npm run build
 
-    # Sync built files to deployment directory
-    # Using rsync with delete flag to remove old files
-    - /bin/rsync -av --delete --exclude='node_modules/.cache' .next $DEPLOYPATH/
-    - /bin/rsync -av --delete public $DEPLOYPATH/
-    - /bin/rsync -av --delete --exclude='*.md' --exclude='.git*' node_modules $DEPLOYPATH/
-    - /bin/cp package.json $DEPLOYPATH/
-    - /bin/cp package-lock.json $DEPLOYPATH/
-    - /bin/cp next.config.js $DEPLOYPATH/
-    - /bin/cp server.js $DEPLOYPATH/ 2>/dev/null || :
-
-    # Set proper permissions
-    - chmod -R 755 $DEPLOYPATH
-
-    # Restart Node.js application (if using PM2 or similar)
-    # Uncomment and modify based on your process manager
-    # - pm2 restart ceylon-shine-web || pm2 start $DEPLOYPATH/server.js --name ceylon-shine-web
+    # Restart Node.js app (cPanel way)
+    - touch tmp/restart.txt
