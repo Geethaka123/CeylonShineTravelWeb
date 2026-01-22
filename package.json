@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
+    "start": "NODE_ENV=production NODE_OPTIONS=--max-old-space-size=2048 node server.js",
     "lint": "next lint",
     "setup-gmail": "node setup-gmail.js"
   },
