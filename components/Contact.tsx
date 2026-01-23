@@ -15,8 +15,9 @@ import {
   ArrowRight,
   Globe,
   Sparkles,
+  Timer,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm, ValidationError } from '@formspree/react';
 
 // Form data type
@@ -49,8 +50,76 @@ const Contact = () => {
   // Client-side validation state
   const [errors, setErrors] = useState<Record<string, string>>({});
 
+  // Rate limiting state
+  const [rateLimit, setRateLimit] = useState<{
+    count: number;
+    lockoutUntil: number | null;
+  }>({ count: 0, lockoutUntil: null });
+  const [countdown, setCountdown] = useState<string>("");
+
+  // Load rate limit state from local storage on mount
+  useEffect(() => {
+    const storedCount = localStorage.getItem("contactFormCount");
+    const storedLockout = localStorage.getItem("contactFormLockout");
+
+    if (storedLockout) {
+      const lockoutTime = parseInt(storedLockout);
+      if (lockoutTime > Date.now()) {
+        setRateLimit({ count: 5, lockoutUntil: lockoutTime });
+      } else {
+        // Lockout expired, reset
+        localStorage.removeItem("contactFormLockout");
+        localStorage.removeItem("contactFormCount");
+        setRateLimit({ count: 0, lockoutUntil: null });
+      }
+    } else if (storedCount) {
+      setRateLimit({ count: parseInt(storedCount), lockoutUntil: null });
+    }
+  }, []);
+
+  // Countdown timer effect
+  useEffect(() => {
+    if (!rateLimit.lockoutUntil) return;
+
+    const timer = setInterval(() => {
+      const remaining = rateLimit.lockoutUntil! - Date.now();
+      
+      if (remaining <= 0) {
+        // Timer finished
+        setRateLimit({ count: 0, lockoutUntil: null });
+        setCountdown("");
+        localStorage.removeItem("contactFormLockout");
+        localStorage.removeItem("contactFormCount");
+        clearInterval(timer);
+      } else {
+        const minutes = Math.floor(remaining / 60000);
+        const seconds = Math.floor((remaining % 60000) / 1000);
+        setCountdown(`${minutes}:${seconds.toString().padStart(2, '0')}`);
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [rateLimit.lockoutUntil]);
+
   // Formspree hook
   const [state, handleSubmit] = useForm("maqedpjk");
+
+  // Track successful submissions
+  useEffect(() => {
+    if (state.succeeded) {
+      const newCount = (parseInt(localStorage.getItem("contactFormCount") || "0")) + 1;
+      
+      if (newCount >= 5) {
+        // Set 15 minute lockout
+        const lockoutTime = Date.now() + 15 * 60 * 1000;
+        localStorage.setItem("contactFormLockout", lockoutTime.toString());
+        setRateLimit({ count: newCount, lockoutUntil: lockoutTime });
+      } else {
+        localStorage.setItem("contactFormCount", newCount.toString());
+        setRateLimit(prev => ({ ...prev, count: newCount }));
+      }
+    }
+  }, [state.succeeded]);
 
   // Handle input changes
   const handleInputChange = (
@@ -115,6 +184,11 @@ const Contact = () => {
   // Handle form submission
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Check rate limit
+    if (rateLimit.lockoutUntil && Date.now() < rateLimit.lockoutUntil) {
+      return;
+    }
 
     if (!validateForm()) {
       return;
@@ -386,22 +460,26 @@ const Contact = () => {
                         boxShadow: "0 20px 40px -10px rgba(29, 162, 160, 0.4)"
                       }}
                       whileTap={{ scale: 0.98 }}
-                      disabled={state.submitting}
-                      className="w-full py-6 bg-ceylon-teal text-white rounded-3xl text-[10px] uppercase tracking-[0.5em] font-black shadow-2xl overflow-hidden relative group"
+                      disabled={state.submitting || !!rateLimit.lockoutUntil}
+                      className={`w-full py-6 text-white rounded-3xl text-[10px] uppercase tracking-[0.5em] font-black shadow-2xl overflow-hidden relative group ${rateLimit.lockoutUntil ? 'bg-gray-400 cursor-not-allowed' : 'bg-ceylon-teal'}`}
                     >
                       <span className="relative z-10 flex items-center justify-center gap-3">
-                        {state.submitting ? (
+                        {rateLimit.lockoutUntil ? (
+                           <>Limit Reached ({countdown}) <Timer size={14}/></>
+                        ) : state.submitting ? (
                           <>Preparing Wings... <Compass className="animate-spin" size={16}/></>
                         ) : (
                           <>Start the Journey <Send size={14} /></>
                         )}
                       </span>
-                      <motion.div 
-                        className="absolute inset-0 bg-white"
-                        initial={{ x: "-100%" }}
-                        whileHover={{ x: "100%" }}
-                        transition={{ duration: 0.6 }}
-                      />
+                      {!rateLimit.lockoutUntil && (
+                        <motion.div 
+                          className="absolute inset-0 bg-white"
+                          initial={{ x: "-100%" }}
+                          whileHover={{ x: "100%" }}
+                          transition={{ duration: 0.6 }}
+                        />
+                      )}
                     </motion.button>
                   </form>
                 </motion.div>
