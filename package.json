@@ -6,15 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "NODE_ENV=production NODE_OPTIONS=--max-old-space-size=2048 node server.js",
-    "lint": "next lint",
-    "setup-gmail": "node setup-gmail.js"
+    "lint": "next lint"
   },
   "dependencies": {
-    "@types/nodemailer": "^7.0.1",
     "framer-motion": "^10.16.16",
     "lucide-react": "^0.294.0",
     "next": "14.0.4",
-    "nodemailer": "^7.0.6",
     "react": "^18",
     "react-dom": "^18",
     "react-intersection-observer": "^9.5.3"
