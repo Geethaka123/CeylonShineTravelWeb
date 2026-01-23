@@ -4,277 +4,104 @@
 
 /* Ceylon Shine Travel Theme - Global Styles */
 @layer base {
-  * {
-    @apply border-gray-200;
-  }
-
   body {
     @apply bg-ceylon-light text-ceylon-dark;
-    font-family: "Inter", sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
   }
 }
 
 @layer components {
-  /* Glassmorphism Effect */
+  /* Soft Glassmorphism */
   .glass {
-    @apply bg-white/10 backdrop-blur-lg border border-white/20;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15),
-      0 0 0 1px rgba(255, 255, 255, 0.1);
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.1) 0%,
-      rgba(255, 255, 255, 0.05) 50%,
-      rgba(255, 255, 255, 0.1) 100%
-    );
+    @apply bg-white/40 backdrop-blur-md border border-white/30;
+    box-shadow: 0 4px 24px -1px rgba(45, 90, 39, 0.05);
   }
 
   .glass-hover:hover {
-    @apply backdrop-blur-xl;
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.15) 0%,
-      rgba(255, 255, 255, 0.08) 50%,
-      rgba(255, 255, 255, 0.15) 100%
-    );
-    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.25),
-      0 0 0 1px rgba(255, 255, 255, 0.15);
+    @apply bg-white/60 backdrop-blur-lg border-white/50;
+    box-shadow: 0 8px 32px -1px rgba(45, 90, 39, 0.1);
   }
 
-  .glass-dark {
-    @apply bg-ceylon-dark/20 backdrop-blur-md border border-ceylon-dark/30;
-  }
-
-  /* Ceylon Shine Travel-themed gradients */
+  /* Aesthetic Calm Gradients */
   .travel-gradient {
-    background: linear-gradient(135deg, #007b73 0%, #ffb637 50%, #004463 100%);
+    background: linear-gradient(135deg, #1da2a0 0%, #f8b133 100%);
   }
 
-  .ocean-gradient {
-    background: linear-gradient(135deg, #004463 0%, #2e6b3f 50%, #007b73 100%);
+  .nature-gradient {
+    background: linear-gradient(135deg, #1da2a0 0%, #225838 100%);
   }
 
-  .sunset-gradient {
-    background: linear-gradient(135deg, #ffb637 0%, #8b5a2b 50%, #007b73 100%);
-  }
-
-  .beach-gradient {
-    background: linear-gradient(135deg, #ffb637 0%, #8b5a2b 50%, #2e6b3f 100%);
-  }
-
-  .forest-gradient {
-    background: linear-gradient(135deg, #2e6b3f 0%, #007b73 50%, #004463 100%);
-  }
-
-  .desert-gradient {
-    background: linear-gradient(135deg, #8b5a2b 0%, #ffb637 50%, #2e6b3f 100%);
-  }
-
-  /* Ceylon Shine Travel-themed text gradients */
-  .text-travel-gradient {
-    background: linear-gradient(135deg, #007b73, #ffb637, #004463);
+  .text-nature-gradient {
+    background: linear-gradient(135deg, #225838, #1da2a0);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  .text-ocean-gradient {
-    background: linear-gradient(135deg, #004463, #2e6b3f, #007b73);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .text-sunset-gradient {
-    background: linear-gradient(135deg, #ffb637, #8b5a2b, #007b73);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  /* Ceylon Shine Travel-themed buttons */
+  /* Refined Buttons */
   .btn-primary {
-    @apply bg-ceylon-teal hover:bg-ceylon-navy text-ceylon-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
+    @apply bg-ceylon-teal hover:bg-ceylon-dark text-white font-medium py-3 px-8 rounded-full transition-all duration-500 transform hover:-translate-y-1 shadow-md hover:shadow-xl;
   }
 
   .btn-secondary {
-    @apply bg-ceylon-navy hover:bg-ceylon-teal text-ceylon-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
-  }
-
-  .btn-accent {
-    @apply bg-ceylon-golden hover:bg-ceylon-brown text-ceylon-dark font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
+    @apply bg-ceylon-gold hover:bg-ceylon-clay text-ceylon-dark font-medium py-3 px-8 rounded-full transition-all duration-500 transform hover:-translate-y-1 shadow-md hover:shadow-xl;
   }
 
   .btn-outline {
-    @apply border-2 border-ceylon-teal text-ceylon-teal hover:bg-ceylon-teal hover:text-ceylon-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105;
+    @apply border-2 border-ceylon-teal/30 text-ceylon-teal hover:bg-ceylon-teal hover:text-white font-medium py-3 px-8 rounded-full transition-all duration-500;
   }
 
-  /* Ceylon Shine Travel-themed cards */
-  .card-travel {
-    @apply bg-ceylon-golden/50 backdrop-blur-sm border border-ceylon-golden/20 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105;
+  /* Calm Cards */
+  .card-aesthetic {
+    @apply bg-white/80 backdrop-blur-sm border border-ceylon-gold/10 rounded-2xl p-6 shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2;
   }
 
-  .card-ocean {
-    @apply bg-ceylon-navy/10 backdrop-blur-sm border border-ceylon-navy/20 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105;
-  }
-
-  .card-forest {
-    @apply bg-ceylon-leaf/10 backdrop-blur-sm border border-ceylon-leaf/20 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105;
-  }
-
-  .card-sunset {
-    @apply bg-ceylon-golden/10 backdrop-blur-sm border border-ceylon-golden/20 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105;
-  }
-
-  /* Ceylon Shine Travel-themed navigation */
+  /* Minimal Navigation */
   .nav-link {
-    @apply text-ceylon-dark hover:text-ceylon-teal transition-colors duration-300 relative;
+    @apply text-ceylon-dark/80 hover:text-ceylon-teal transition-colors duration-300 relative font-medium;
   }
 
   .nav-link::after {
     content: "";
-    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-ceylon-teal transition-all duration-300;
+    @apply absolute -bottom-1 left-0 w-0 h-0.5 bg-ceylon-teal/40 transition-all duration-500;
   }
 
   .nav-link:hover::after {
     @apply w-full;
   }
 
-  /* Ceylon Shine Travel-themed form elements */
-  .input-travel {
-    @apply bg-ceylon-white/80 border border-ceylon-golden rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-ceylon-teal focus:border-transparent transition-all duration-300;
+  /* Aesthetic Form Elements */
+  .input-aesthetic {
+    @apply bg-white/50 border border-ceylon-gold/20 rounded-full px-6 py-3 focus:outline-none focus:ring-2 focus:ring-ceylon-teal/20 focus:border-ceylon-teal/50 transition-all duration-300;
   }
 
-  /* Ceylon Shine Travel-themed animations */
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
+  /* Calm Animations */
+  @keyframes float-gentle {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
   }
 
-  .animate-glow-travel {
-    animation: glow-travel 2s ease-in-out infinite alternate;
+  .animate-float-gentle {
+    animation: float-gentle 4s ease-in-out infinite;
   }
+}
 
-  .animate-wiggle {
-    animation: wiggle 1s ease-in-out infinite;
-  }
+/* Custom Scrollbar - Calm Aesthetic */
+::-webkit-scrollbar {
+  width: 6px;
+}
 
-  @keyframes glow-travel {
-    0% {
-      box-shadow: 0 0 5px #007b73, 0 0 10px #007b73, 0 0 15px #007b73;
-    }
-    100% {
-      box-shadow: 0 0 10px #007b73, 0 0 20px #007b73, 0 0 30px #007b73;
-    }
-  }
+::-webkit-scrollbar-track {
+  @apply bg-ceylon-light;
+}
 
-  /* Ceylon Shine Travel-themed scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
+::-webkit-scrollbar-thumb {
+  @apply bg-ceylon-gold/30 rounded-full;
+}
 
-  ::-webkit-scrollbar-track {
-    @apply bg-ceylon-golden/30;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply bg-ceylon-teal rounded-full;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-ceylon-navy;
-  }
-
-  /* Ceylon Shine Travel-themed selection */
-  ::selection {
-    @apply bg-ceylon-golden text-ceylon-dark;
-  }
-
-  /* Ceylon Shine Travel-themed focus styles */
-  .focus-travel:focus {
-    @apply outline-none ring-2 ring-ceylon-teal ring-offset-2;
-  }
-
-  /* Ceylon Shine Travel-themed hover effects */
-  .hover-travel:hover {
-    @apply transform scale-105 transition-transform duration-300;
-  }
-
-  /* Ceylon Shine Travel-themed text shadows */
-  .text-shadow-travel {
-    text-shadow: 2px 2px 4px rgba(31, 41, 55, 0.3);
-  }
-
-  /* Ceylon Shine Travel-themed box shadows */
-  .shadow-travel {
-    box-shadow: 0 10px 25px rgba(0, 123, 115, 0.2);
-  }
-
-  .shadow-ocean {
-    box-shadow: 0 10px 25px rgba(0, 68, 99, 0.2);
-  }
-
-  .shadow-sunset {
-    box-shadow: 0 10px 25px rgba(255, 182, 55, 0.2);
-  }
-
-  .shadow-beach {
-    box-shadow: 0 10px 25px rgba(255, 182, 55, 0.2);
-  }
-
-  /* Ceylon Shine Travel-themed badges */
-  .badge-travel {
-    @apply bg-ceylon-teal text-ceylon-white px-3 py-1 rounded-full text-sm font-semibold;
-  }
-
-  .badge-ocean {
-    @apply bg-ceylon-navy text-ceylon-white px-3 py-1 rounded-full text-sm font-semibold;
-  }
-
-  .badge-forest {
-    @apply bg-ceylon-leaf text-ceylon-white px-3 py-1 rounded-full text-sm font-semibold;
-  }
-
-  .badge-sunset {
-    @apply bg-ceylon-golden text-ceylon-dark px-3 py-1 rounded-full text-sm font-semibold;
-  }
-
-  /* Ceylon Shine Travel-themed backgrounds */
-  .bg-travel-pattern {
-    background-image: radial-gradient(
-        circle at 25% 25%,
-        rgba(0, 123, 115, 0.1) 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        circle at 75% 75%,
-        rgba(255, 182, 55, 0.1) 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        circle at 50% 50%,
-        rgba(0, 68, 99, 0.05) 0%,
-        transparent 50%
-      );
-  }
-
-  /* Ceylon Shine Travel-themed borders */
-  .border-travel-gradient {
-    border-image: linear-gradient(135deg, #007b73, #ffb637, #004463) 1;
-  }
-
-  /* Ceylon Shine Travel-themed icons */
-  .icon-travel {
-    @apply text-ceylon-teal;
-  }
-
-  .icon-ocean {
-    @apply text-ceylon-navy;
-  }
-
-  .icon-forest {
-    @apply text-ceylon-leaf;
-  }
-
-  .icon-sunset {
-    @apply text-ceylon-golden;
-  }
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-ceylon-teal/60;
 }

@@ -11,6 +11,7 @@ import {
   Phone,
   MapPin,
   ArrowUp,
+  Palmtree,
 } from "lucide-react";
 
 const Footer = () => {
@@ -57,176 +58,143 @@ const Footer = () => {
     { icon: Youtube, href: "#", label: "YouTube" },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.1,
+        type: "spring",
+        stiffness: 100,
+        damping: 20,
+      },
+    },
+  };
+
   return (
-    <footer className="bg-gradient-to-br from-ceylon-leaf via-ceylon-navy to-ceylon-leaf relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-20 w-32 h-32 bg-ceylon-golden rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-20 w-40 h-40 bg-ceylon-brown rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-ceylon-teal rounded-full blur-3xl"></div>
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
-          {/* Company Info */}
-          <div className="lg:col-span-2">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="mb-6"
-            >
-              <h3 className="text-2xl font-bold text-ceylon-white mb-4">
-                <span className="text-ceylon-golden">Ceylon</span>
-                <span className="text-ceylon-white"> Shine</span>
-                <span className="text-ceylon-teal"> Travel</span>
-              </h3>
-              <p className="text-ceylon-white/80 mb-6 leading-relaxed">
-                We specialize in creating unforgettable travel experiences
-                across Sri Lanka. From ancient temples to pristine beaches, we
-                make your travel dreams come true with personalized service and
-                expert planning.
-              </p>
-            </motion.div>
-
-            {/* Contact Info */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="space-y-3"
-            >
-              <div className="flex items-center space-x-3 text-ceylon-white/80 hover:text-ceylon-golden transition-colors duration-300">
-                <Phone className="w-4 h-4" />
-                <span>+94 77 993 3765</span>
-              </div>
-              {/* <div className="flex items-center space-x-3 text-ceylon-white/80 hover:text-ceylon-golden transition-colors duration-300">
-                <Mail className="w-4 h-4" />
-                <span>info@ceylonshinetravel.com</span>
-              </div> */}
-              <div className="flex items-center space-x-3 text-ceylon-white/80 hover:text-ceylon-golden transition-colors duration-300">
-                <MapPin className="w-4 h-4" />
-                <span>Ahangama, Southern Province, Sri Lanka</span>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Footer Links */}
-          {/* {Object.entries(footerLinks).map(([category, links], categoryIndex) => (
-            <motion.div
-              key={category}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 + categoryIndex * 0.1 }}
-            >
-              <h4 className="text-lg font-semibold text-ceylon-white mb-4 capitalize">
-                {category}
-              </h4>
-              <ul className="space-y-2">
-                {links.map((link, linkIndex) => (
-                  <motion.li
-                    key={link.name}
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, delay: 0.4 + categoryIndex * 0.1 + linkIndex * 0.05 }}
-                  >
-                    <a
-                      href={link.href}
-                      className="text-ceylon-white/70 hover:text-ceylon-golden transition-colors duration-300 text-sm"
-                    >
-                      {link.name}
-                    </a>
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
-          ))} */}
+    <footer className="bg-ceylon-dark relative overflow-hidden pt-32 pb-16 border-t border-white/5">
+      {/* Nature Overlay */}
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
+        whileInView={{ opacity: 0.2, scale: 1, rotate: 0 }}
+        transition={{ duration: 2, ease: "easeOut" }}
+        className="absolute inset-0 pointer-events-none"
+      >
+        <div className="absolute -bottom-20 -left-20 text-ceylon-gold">
+          <Palmtree size={500} strokeWidth={0.5} />
         </div>
+      </motion.div>
 
-        {/* Newsletter Subscription */}
-        {/* <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="glass rounded-2xl p-8 mb-12"
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24"
         >
-          <div className="text-center mb-6">
-            <h3 className="text-2xl font-bold text-ceylon-white mb-2">
-              Stay Updated
+          {/* Brand Identity */}
+          <div className="lg:col-span-2 space-y-10">
+            <h3 className="text-4xl font-serif text-white tracking-tight">
+              Ceylon <span className="italic text-ceylon-teal uppercase tracking-[0.2em] font-bold text-2xl ml-2">Shine</span>
             </h3>
-            <p className="text-ceylon-white/80">
-              Subscribe to our newsletter for exclusive travel deals and
-              destination inspiration from Sri Lanka.
+            <p className="text-white/50 font-light leading-relaxed max-w-md text-lg">
+              Crafting paths to the hidden soul of Sri Lanka. We believe in travel 
+              that honors the land, respects the culture, and resonates with the traveler.
             </p>
-          </div>
-          <div className="max-w-md mx-auto">
-            <div className="flex space-x-3">
-              <input
-                type="email"
-                placeholder="Enter your email address"
-                className="flex-1 px-4 py-3 bg-ceylon-white/10 border border-ceylon-white/20 rounded-lg text-ceylon-white placeholder-ceylon-white/50 focus:outline-none focus:ring-2 focus:ring-ceylon-golden focus:border-transparent transition-all duration-300"
-              />
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-ceylon-golden to-ceylon-brown text-ceylon-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg"
-              >
-                Subscribe
-              </motion.button>
-            </div>
-          </div>
-        </motion.div> */}
-
-        {/* Bottom Section */}
-        <div className="border-t border-ceylon-white/20 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            {/* Copyright */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-ceylon-white/70 text-sm"
-            >
-              © 2025 Ceylon Shine Travel. All rights reserved.
-            </motion.div>
-
-            {/* Social Links */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
-              className="flex space-x-4"
-            >
-              {socialLinks.map((social, index) => (
+            <div className="flex space-x-8">
+              {socialLinks.map((social) => (
                 <motion.a
                   key={social.label}
                   href={social.href}
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: 0.8 + index * 0.1 }}
-                  whileHover={{ scale: 1.2, rotate: 5 }}
-                  className="w-10 h-10 bg-ceylon-white/10 backdrop-blur-sm border border-ceylon-white/20 rounded-full flex items-center justify-center text-ceylon-white hover:text-ceylon-golden hover:bg-ceylon-white/20 transition-all duration-300"
+                  whileHover={{ 
+                    y: -8, 
+                    color: "#f8b133",
+                    textShadow: "0 0 15px rgba(248, 177, 51, 0.4)" 
+                  }}
+                  className="text-white/30 hover:text-white transition-all duration-300"
+                  aria-label={`Follow CeylonShine on ${social.label}`}
                 >
-                  <social.icon className="w-5 h-5" />
+                  <social.icon size={24} strokeWidth={1.2} />
                 </motion.a>
               ))}
-            </motion.div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      {/* Scroll to Top Button */}
-      <motion.button
-        onClick={scrollToTop}
-        initial={{ opacity: 0, scale: 0 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        className="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-ceylon-golden to-ceylon-brown rounded-full flex items-center justify-center text-ceylon-white shadow-lg hover:shadow-xl transition-all duration-300 z-50"
-      >
-        <ArrowUp className="w-6 h-6" />
-      </motion.button>
+          {/* Quick Links - Simplified */}
+          <div className="space-y-10">
+            <h4 className="text-[10px] uppercase tracking-[0.5em] text-ceylon-teal font-bold bg-white/5 w-fit px-4 py-1 rounded-full">Journeys</h4>
+            <ul className="space-y-5">
+              {footerLinks.destinations.map((link) => (
+                <li key={link.name}>
+                  <motion.a 
+                    href={link.href} 
+                    whileHover={{ x: 10, color: "#f8b133" }}
+                    className="text-white/40 hover:text-ceylon-gold text-base transition-all font-light flex items-center space-x-3"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-ceylon-teal/30" />
+                    <span>{link.name}</span>
+                  </motion.a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact Summary */}
+          <div className="space-y-10">
+            <h4 className="text-[10px] uppercase tracking-[0.5em] text-ceylon-teal font-bold bg-white/5 w-fit px-4 py-1 rounded-full">Contact</h4>
+            <div className="space-y-8">
+              <motion.div 
+                whileHover={{ x: 5 }}
+                className="flex items-center space-x-4 text-white/50"
+              >
+                <div className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center border border-white/10 group-hover:bg-ceylon-teal transition-colors">
+                  <Phone size={16} className="text-ceylon-gold" />
+                </div>
+                <span className="text-base font-light tracking-wide">+94 77 993 3765</span>
+              </motion.div>
+              <motion.div 
+                whileHover={{ x: 5 }}
+                className="flex items-center space-x-4 text-white/50"
+              >
+                <div className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center border border-white/10">
+                  <MapPin size={16} className="text-ceylon-gold" />
+                </div>
+                <span className="text-base font-light tracking-wide">Ahangama, Sri Lanka</span>
+              </motion.div>
+              <div className="pt-6">
+                <p className="text-[10px] uppercase tracking-[0.3em] text-ceylon-gold/40 font-bold bg-ceylon-gold/5 px-4 py-2 rounded-full w-fit">Available 24/7 for you</p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Bottom Bar */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+          className="pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0"
+        >
+          <p className="text-[10px] uppercase tracking-[0.3em] text-white/20 font-bold">
+            © 2025 Ceylon Shine Travel. Honor the Journey.
+          </p>
+          <motion.button
+            onClick={scrollToTop}
+            whileHover={{ y: -5, color: "#f8b133" }}
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center space-x-4 text-[10px] uppercase tracking-[0.4em] text-white/30 hover:text-ceylon-gold transition-all font-black group"
+            aria-label="Back to top"
+          >
+            <span className="border-b border-transparent group-hover:border-ceylon-gold pb-1 transition-all">Back to Top</span>
+            <div className="bg-white/5 p-2 rounded-full border border-white/10 group-hover:bg-ceylon-gold group-hover:text-white transition-all">
+              <ArrowUp size={16} />
+            </div>
+          </motion.button>
+        </motion.div>
+      </div>
     </footer>
   );
 };

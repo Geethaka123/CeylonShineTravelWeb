@@ -6,6 +6,11 @@ import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import AboutPage from "@/components/About";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Home - CeylonShine Travel Agency | Discover Sri Lanka",
+};
 
 export default function Home() {
   return (

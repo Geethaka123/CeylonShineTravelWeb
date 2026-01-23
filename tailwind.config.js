@@ -8,34 +8,32 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Ceylon Shine Travel Color Palette - Based on Logo
+        // Ceylon Shine Travel Color Palette - Aesthetic Calm Sri Lankan Feel
         ceylon: {
-          teal: "#007B73", // Teal Green - text and outer ring
-          golden: "#FFB637", // Golden Yellow/Orange - background sun and highlights
-          navy: "#004463", // Dark Blue/Navy - ocean waves
-          leaf: "#2E6B3F", // Leaf Green - palm trees and vegetation
-          brown: "#8B5A2B", // Brown/Tan - mountains, leopard, traditional elements
-          white: "#FFFFFF", // Pure White
-          light: "#F8FAFC", // Light Gray - Backgrounds
-          dark: "#1F2937", // Dark Gray - Text & Headers
+          teal: "#1da2a0",    // Vibrant Logo Teal
+          gold: "#f8b133",    // Vibrant Logo Gold
+          golden: "#f8b133",  // Alias for gold
+          clay: "#b14a27",    // Logo Terracotta/Red
+          ocean: "#0a6379",   // Logo Wave Blue
+          forest: "#225838",  // Logo Tree Green
+          leaf: "#225838",    // Alias for forest
+          dark: "#0f172a",    // Deep Navy/Black for contrast
+          navy: "#0f172a",    // Alias for dark
+          light: "#f7f3ef",   // Clean Sand/Eggshell
+          white: "#FFFFFF",
         },
 
-        // Legacy colors for compatibility
+        // Legacy/Semantic mapping for the new theme
         travel: {
-          primary: "#007B73", // Teal Green
-          secondary: "#004463", // Dark Blue/Navy
-          accent: "#FFB637", // Golden Yellow/Orange
-          success: "#2E6B3F", // Leaf Green
-          warning: "#FFB637", // Golden Yellow/Orange
-          error: "#EF4444", // Red - Urgency
-          dark: "#1F2937", // Dark Gray - Text & Headers
-          light: "#F8FAFC", // Light Gray - Backgrounds
-          white: "#FFFFFF", // Pure White
-          beach: "#FFB637", // Golden Yellow/Orange
-          ocean: "#004463", // Dark Blue/Navy
-          forest: "#2E6B3F", // Leaf Green
-          sunset: "#FFB637", // Golden Yellow/Orange
-          desert: "#8B5A2B", // Brown/Tan
+          primary: "#2D5A27",   // Forest Green
+          secondary: "#D4A373", // Ochre
+          accent: "#BC6C25",    // Clay
+          success: "#8AA682",   // Sage
+          warning: "#D4A373",   // Ochre
+          error: "#9E2A2B",     // Deep Rust/Red
+          dark: "#283618",      // Deep Jungle
+          light: "#FEFAE0",     // Light Cream
+          white: "#FFFFFF",
         },
 
         // Legacy colors for compatibility
@@ -130,13 +128,14 @@ module.exports = {
         "desert-gradient":
           "linear-gradient(135deg, #8B5A2B 0%, #FFB637 50%, #2E6B3F 100%)",
       },
+      fontFamily: {
+        serif: ["var(--font-playfair)", "serif"],
+        sans: ["var(--font-inter)", "sans-serif"],
+      },
       boxShadow: {
-        glass: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
-        "glass-light": "0 4px 16px 0 rgba(31, 38, 135, 0.2)",
-        "travel-glow": "0 0 20px rgba(0, 123, 115, 0.3)",
-        "ocean-glow": "0 0 20px rgba(0, 68, 99, 0.3)",
-        "sunset-glow": "0 0 20px rgba(255, 182, 55, 0.3)",
-        "beach-glow": "0 0 20px rgba(255, 182, 55, 0.3)",
+        glass: "0 8px 32px 0 rgba(40, 54, 24, 0.1)",
+        "glass-light": "0 4px 16px 0 rgba(40, 54, 24, 0.05)",
+        "travel-glow": "0 0 20px rgba(45, 90, 39, 0.15)",
       },
     },
   },

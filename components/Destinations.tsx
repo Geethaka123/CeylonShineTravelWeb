@@ -2,9 +2,10 @@
 
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Star, MapPin, Clock, Users } from "lucide-react";
+import { Star, MapPin, Clock, Users, Compass } from "lucide-react";
 import { useState } from "react";
 import PackageDetailsModal from "./PackageDetailsModal";
+import Image from "next/image";
 
 const Destinations = () => {
   const [ref, inView] = useInView({
@@ -29,7 +30,7 @@ const Destinations = () => {
     {
       name: "Sigiriya",
       image:
-        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "/sigiriya.png",
       rating: 4.9,
       // price: "$899",
       duration: "3 days",
@@ -123,7 +124,7 @@ const Destinations = () => {
     {
       name: "Galle Fort",
       image:
-        "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "/galle.png",
       rating: 4.8,
       price: "$699",
       duration: "2 days",
@@ -207,7 +208,7 @@ const Destinations = () => {
     {
       name: "Ella",
       image:
-        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "/ella.png",
       rating: 4.7,
       price: "$799",
       duration: "4 days",
@@ -310,7 +311,7 @@ const Destinations = () => {
     {
       name: "Mirissa",
       image:
-        "https://images.unsplash.com/photo-1587595431973-160d0d94add1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "/mirissa.png",
       rating: 4.8,
       price: "$599",
       duration: "3 days",
@@ -407,7 +408,7 @@ const Destinations = () => {
     {
       name: "Kandy",
       image:
-        "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "/kandy.png",
       rating: 4.6,
       price: "$649",
       duration: "2 days",
@@ -498,7 +499,7 @@ const Destinations = () => {
     {
       name: "Yala National Park",
       image:
-        "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "/yala.png",
       rating: 4.9,
       price: "$999",
       duration: "3 days",
@@ -599,150 +600,168 @@ const Destinations = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.15,
+        delayChildren: 0.1,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 50, scale: 0.9 },
     visible: {
       opacity: 1,
       y: 0,
+      scale: 1,
       transition: {
-        duration: 0.5,
+        type: "spring",
+        stiffness: 80,
+        damping: 15,
       },
     },
+  };
+
+  const overlayVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      transition: { delay: 0.5, type: "spring", stiffness: 100 }
+    }
   };
 
   return (
     <section
       id="destinations"
-      className="py-20 bg-gradient-to-br from-ceylon-white via-ceylon-golden/20 to-ceylon-golden/10"
+      className="py-32 bg-white relative"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="text-ceylon-leaf">Popular</span>
-            <span className="text-travel-gradient"> Destinations</span>
-          </h2>
-          <p className="text-lg text-ceylon-leaf/80 max-w-3xl mx-auto">
-            Discover Sri Lanka's most breathtaking destinations handpicked by
-            our travel experts. Each location offers unique experiences and
-            unforgettable memories.
-          </p>
-        </motion.div>
+        <div className="text-center mb-28 space-y-6">
+          <motion.span 
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ type: "spring", stiffness: 200 }}
+            className="text-[10px] uppercase tracking-[0.5em] text-ceylon-teal font-bold bg-ceylon-teal/5 px-8 py-2.5 rounded-full inline-block"
+          >
+            Curated Paths
+          </motion.span>
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ type: "spring", stiffness: 100, delay: 0.1 }}
+            className="text-6xl md:text-8xl font-serif text-ceylon-dark"
+          >
+            Our <span className="italic text-ceylon-gold glow-text-soft">Journeys</span>
+          </motion.h2>
+          <motion.div 
+            initial={{ width: 0 }}
+            whileInView={{ width: 120 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.2, delay: 0.5 }}
+            className="h-1 bg-ceylon-gold/30 mx-auto rounded-full" 
+          />
+          <motion.p 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.3 }}
+            className="text-lg md:text-2xl text-ceylon-dark/50 max-w-3xl mx-auto font-light leading-relaxed font-sans mt-8"
+          >
+            Hand-selected experiences that capture the essence of Sri Lanka's 
+            diverse landscape, from ancient heights to coastal whispers.
+          </motion.p>
+        </div>
 
         {/* Destinations Grid */}
         <motion.div
           ref={ref}
           variants={containerVariants}
           initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16"
         >
-          {destinations.map((destination, index) => (
+          {destinations.map((destination) => (
             <motion.div
               key={destination.name}
               variants={itemVariants}
-              whileHover={{
-                scale: 1.03,
-                transition: { duration: 0.2 },
+              whileHover={{ 
+                y: -15,
+                transition: { type: "spring", stiffness: 400, damping: 20 }
               }}
-              className="glass glass-hover group cursor-pointer overflow-hidden rounded-xl transition-all duration-300"
+              className="group cursor-pointer flex flex-col h-full bg-white rounded-[3rem] p-4 hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.1)] transition-shadow duration-700"
             >
               {/* Image Container */}
-              <div className="relative h-48 overflow-hidden rounded-t-xl">
-                <motion.img
+              <div className="relative h-[450px] overflow-hidden rounded-[2.5rem] shadow-2xl mb-8">
+                <Image
                   src={destination.image}
-                  alt={destination.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  alt={`Travel to ${destination.name} with CeylonShine Travel Agency - ${destination.description}`}
+                  fill
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s] ease-out"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-
-                {/* Price Badge */}
-                {/* <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  className="absolute top-4 right-4 bg-gradient-to-r from-ceylon-brown to-ceylon-golden text-ceylon-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg"
+                <div className="absolute inset-0 bg-gradient-to-t from-ceylon-dark/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
+                
+                {/* Rating Overlay */}
+                <motion.div 
+                  variants={overlayVariants}
+                  className="absolute top-6 left-6 flex items-center space-x-2 bg-white/95 backdrop-blur-md px-5 py-2.5 rounded-full shadow-lg"
                 >
-                  {destination.price}
-                </motion.div> */}
-
-                {/* Rating */}
-                <div className="absolute bottom-4 left-4 flex items-center space-x-1 bg-ceylon-white/90 backdrop-blur-sm px-2 py-1 rounded-full">
-                  <Star className="w-4 h-4 text-ceylon-golden fill-current" />
-                  <span className="text-sm font-semibold text-ceylon-leaf">
+                  <Star className="w-4 h-4 text-ceylon-gold fill-current" />
+                  <span className="text-sm font-bold text-ceylon-dark">
                     {destination.rating}
                   </span>
-                </div>
+                </motion.div>
+
+                {/* Duration Overlay */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                  className="absolute bottom-8 left-8 flex items-center space-x-3 text-white"
+                >
+                  <div className="bg-ceylon-teal backdrop-blur-md p-2.5 rounded-full shadow-lg">
+                    <Clock size={16} />
+                  </div>
+                  <span className="text-base font-bold tracking-wide uppercase text-xs">{destination.duration}</span>
+                </motion.div>
               </div>
 
               {/* Content */}
-              <div
-                className="p-6 backdrop-blur-sm"
-                style={{ backgroundColor: "rgba(255, 255, 255, 0.05)" }}
+              <div 
+                className="flex-1 flex flex-col px-6 pb-4"
+                onClick={() => handleViewDetails(destination)}
               >
-                <h3 className="text-xl font-semibold text-ceylon-leaf mb-2 group-hover:text-ceylon-teal transition-colors duration-300">
-                  {destination.name}
-                </h3>
-
-                <p className="text-ceylon-leaf/80 mb-4 leading-relaxed">
-                  {destination.description}
-                </p>
-
-                {/* Trip Details */}
-                <div
-                  className="space-y-2 backdrop-blur-sm rounded-lg p-3"
-                  style={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}
-                >
-                  <div className="flex items-center text-sm text-ceylon-leaf/90">
-                    <Clock className="w-4 h-4 mr-2 text-ceylon-teal" />
-                    <span>{destination.duration}</span>
-                  </div>
-                  <div className="flex items-center text-sm text-ceylon-leaf/90">
-                    <Users className="w-4 h-4 mr-2 text-ceylon-teal" />
-                    <span>{destination.travelers}</span>
-                  </div>
-                  <div className="flex items-center text-sm text-ceylon-leaf/90">
-                    <MapPin className="w-4 h-4 mr-2 text-ceylon-teal" />
-                    <span>All inclusive</span>
+                <div className="flex justify-between items-start mb-6">
+                  <h3 className="text-3xl md:text-4xl font-serif text-ceylon-dark group-hover:text-ceylon-teal transition-colors duration-500">
+                    {destination.name}
+                  </h3>
+                  <div className="text-ceylon-gold font-serif text-2xl italic flex flex-col items-end">
+                    <span>{destination.price || "Custom"}</span>
+                    <span className="text-[10px] uppercase tracking-widest text-ceylon-dark/30 font-bold not-italic">Starting Price</span>
                   </div>
                 </div>
 
-                {/* View Details Button */}
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => handleViewDetails(destination)}
-                  className="w-full mt-4 bg-gradient-to-r from-ceylon-teal to-ceylon-navy text-ceylon-white py-2 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg"
-                >
-                  View Details
-                </motion.button>
+                <p className="text-ceylon-dark/60 mb-10 leading-relaxed font-light text-base line-clamp-2">
+                  {destination.description}
+                </p>
+
+                {/* Tags & Action */}
+                <div className="mt-auto flex items-center justify-between pt-8 border-t border-ceylon-gold/10">
+                  <div className="flex items-center space-x-3 bg-ceylon-teal/5 px-4 py-2 rounded-full">
+                    <Users size={14} className="text-ceylon-teal" />
+                    <span className="text-[10px] uppercase tracking-widest text-ceylon-teal font-bold">{destination.travelers}</span>
+                  </div>
+                  <div className="flex items-center space-x-2 text-ceylon-teal/40 group-hover:text-ceylon-teal transition-colors duration-500">
+                    <span className="text-[10px] font-bold uppercase tracking-widest">View Details</span>
+                    <Compass size={16} className="group-hover:rotate-45 transition-transform duration-500" />
+                  </div>
+                </div>
               </div>
             </motion.div>
           ))}
-        </motion.div>
-
-        {/* View All Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.8 }}
-          className="text-center mt-12"
-        >
-          {/* <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="btn-primary text-lg px-8 py-4"
-          >
-            View All Destinations
-          </motion.button> */}
         </motion.div>
       </div>
 

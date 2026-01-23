@@ -11,6 +11,7 @@ import {
   Heart,
   Shield,
   Clock,
+  Compass,
 } from "lucide-react";
 
 const Services = () => {
@@ -91,18 +92,22 @@ const Services = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.12,
+        delayChildren: 0.1,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
     visible: {
       opacity: 1,
       y: 0,
+      scale: 1,
       transition: {
-        duration: 0.5,
+        type: "spring",
+        stiffness: 100,
+        damping: 15,
       },
     },
   };
@@ -110,118 +115,116 @@ const Services = () => {
   return (
     <section
       id="services"
-      className="py-20 bg-gradient-to-br from-ceylon-golden/30 via-ceylon-white to-ceylon-golden/20"
+      className="py-32 bg-ceylon-light relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Decorative Background Elements */}
+      <motion.div 
+        style={{ y: -50 }}
+        whileInView={{ y: 0 }}
+        transition={{ duration: 2, ease: "easeOut" }}
+        className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/3 opacity-[0.03] pointer-events-none"
+      >
+        <Compass size={600} strokeWidth={0.5} />
+      </motion.div>
+
+      <div className="max-w-7xl mx-auto px-6 sm:px-8">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="text-ceylon-leaf">Our</span>
-            <span className="text-travel-gradient"> Services</span>
-          </h2>
-          <p className="text-lg text-ceylon-leaf/80 max-w-3xl mx-auto">
-            We provide comprehensive travel solutions to make your journey
-            seamless and unforgettable. From booking to support, we've got you
-            covered every step of the way.
-          </p>
-        </motion.div>
+        <div className="text-center mb-24 space-y-6">
+          <motion.span 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ type: "spring", stiffness: 100 }}
+            className="text-xs uppercase tracking-[0.4em] text-ceylon-teal font-bold bg-ceylon-teal/5 px-6 py-2 rounded-full inline-block"
+          >
+            Specialized Experiences
+          </motion.span>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ type: "spring", stiffness: 100, delay: 0.1 }}
+            className="text-5xl md:text-7xl font-serif text-ceylon-dark"
+          >
+            Curated for <span className="italic text-ceylon-gold glow-text-soft">You</span>
+          </motion.h2>
+          <motion.div 
+            initial={{ width: 0 }}
+            whileInView={{ width: 80 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="h-1 bg-ceylon-gold/30 mx-auto rounded-full" 
+          />
+          <motion.p 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.3 }}
+            className="text-lg md:text-xl text-ceylon-dark/60 max-w-3xl mx-auto font-light leading-relaxed font-sans mt-8"
+          >
+            Beyond traditional travel, we offer paths to discovery, tranquility, and 
+            connection with the authentic soul of Sri Lanka.
+          </motion.p>
+        </div>
 
         {/* Services Grid */}
         <motion.div
           ref={ref}
           variants={containerVariants}
           initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
         >
           {services.map((service, index) => (
             <motion.div
               key={service.title}
               variants={itemVariants}
-              whileHover={{
-                scale: 1.03,
-                y: -8,
-                transition: { duration: 0.3, ease: "easeOut" },
+              whileHover={{ 
+                y: -15, 
+                transition: { type: "spring", stiffness: 300, damping: 15 } 
               }}
-              className="glass glass-hover group cursor-pointer rounded-2xl transition-all duration-500 overflow-hidden relative before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/5 before:to-transparent before:opacity-0 group-hover:before:opacity-100 before:transition-opacity before:duration-300 mt-5"
+              className="card-aesthetic flex flex-col items-center text-center group bg-white/50 hover:bg-white hover:shadow-2xl transition-all duration-500"
             >
-              <motion.div
-                whileHover={{ rotate: 360, scale: 1.1 }}
-                transition={{ duration: 0.6 }}
-                className="w-20 h-20 mx-auto mb-6 relative mt-5"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-ceylon-golden/20 to-ceylon-brown/20 rounded-2xl blur-sm"></div>
-                <div className="relative w-full h-full bg-gradient-to-br from-ceylon-golden to-ceylon-brown rounded-2xl flex items-center justify-center shadow-xl backdrop-blur-sm border border-white/20">
-                  <service.icon className="w-10 h-10 text-ceylon-white drop-shadow-lg" />
-                </div>
-              </motion.div>
+              <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mb-8 border-2 border-ceylon-teal/5 shadow-xl group-hover:scale-110 group-hover:border-ceylon-teal/30 group-hover:bg-ceylon-teal group-hover:text-white transition-all duration-500">
+                <service.icon className="w-10 h-10 text-ceylon-teal group-hover:text-white transition-colors" strokeWidth={1.2} />
+              </div>
 
-              <div
-                className="px-8 pb-8 pt-2 backdrop-blur-sm"
-                style={{ backgroundColor: "rgba(255, 255, 255, 0.05)" }}
-              >
-                <h3 className="text-2xl font-bold text-ceylon-leaf mb-4 group-hover:text-ceylon-teal transition-colors duration-300 text-center">
-                  {service.title}
-                </h3>
+              <h3 className="text-2xl md:text-3xl font-serif text-ceylon-dark mb-4">
+                {service.title}
+              </h3>
 
-                <p className="text-ceylon-leaf/80 mb-6 leading-relaxed text-center text-base">
-                  {service.description}
-                </p>
+              <p className="text-ceylon-dark/60 mb-8 leading-relaxed font-light text-base px-4">
+                {service.description}
+              </p>
 
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                  <h4 className="text-sm font-semibold text-ceylon-leaf/90 mb-3 text-center uppercase tracking-wide">
-                    Key Features
-                  </h4>
-                  <ul className="space-y-3">
-                    {service.features.map((feature, featureIndex) => (
-                      <motion.li
-                        key={feature}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={inView ? { opacity: 1, x: 0 } : {}}
-                        transition={{
-                          delay: index * 0.1 + featureIndex * 0.05,
-                        }}
-                        className="flex items-center text-sm text-ceylon-leaf/90 group-hover:text-ceylon-leaf transition-colors duration-300"
-                      >
-                        <div className="w-2 h-2 bg-gradient-to-r from-ceylon-golden to-ceylon-brown rounded-full mr-3 flex-shrink-0" />
-                        <span className="font-medium">{feature}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
-                </div>
+              <div className="w-full pt-8 border-t border-ceylon-gold/10 flex flex-wrap justify-center gap-3">
+                {service.features.map((feature) => (
+                  <motion.span 
+                    key={feature} 
+                    whileHover={{ scale: 1.05, backgroundColor: "rgba(29, 162, 160, 0.1)" }}
+                    className="text-[10px] uppercase tracking-widest text-ceylon-teal font-bold bg-ceylon-teal/5 px-4 py-1.5 rounded-full border border-ceylon-teal/10 cursor-default"
+                  >
+                    {feature}
+                  </motion.span>
+                ))}
               </div>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Call to Action */}
+        {/* Subtle CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.8 }}
-          className="text-center mt-16"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.5, type: "spring" }}
+          className="text-center mt-32"
         >
-          <div className="glass rounded-2xl p-8 md:p-12 max-w-4xl mx-auto">
-            <h3 className="text-3xl font-bold text-ceylon-leaf mb-4">
-              Ready to Start Your Adventure?
-            </h3>
-            <p className="text-ceylon-leaf/80 mb-8 text-lg">
-              Let us help you create the perfect travel experience. Our experts
-              are here to make your dreams come true.
-            </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="btn-primary text-lg px-8 py-4"
-            >
-              Get Started Today
-            </motion.button>
-          </div>
+          <p className="text-ceylon-teal italic font-serif text-2xl opacity-60">
+            "Every path in Sri Lanka whispers a different story..."
+          </p>
+          <div className="w-16 h-[1px] bg-ceylon-teal/20 mx-auto mt-6" />
         </motion.div>
       </div>
     </section>

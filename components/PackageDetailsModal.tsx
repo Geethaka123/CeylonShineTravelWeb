@@ -14,6 +14,7 @@ import {
   Shield,
   CheckCircle,
 } from "lucide-react";
+import Image from "next/image";
 
 interface PackageDetails {
   name: string;
@@ -77,11 +78,12 @@ const PackageDetailsModal = ({
           >
             {/* Header */}
             <div className="relative">
-              <div className="h-64 overflow-hidden">
-                <img
+              <div className="h-64 overflow-hidden relative">
+                <Image
                   src={packageDetails.image}
                   alt={packageDetails.name}
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               </div>
@@ -103,8 +105,8 @@ const PackageDetailsModal = ({
                     </h2>
                     <div className="flex items-center space-x-2">
                       <div className="flex items-center bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
-                        <Star className="w-4 h-4 text-yellow-500 fill-current mr-1" />
-                        <span className="text-sm font-semibold text-gray-800">
+                        <Star className="w-4 h-4 text-ceylon-gold fill-current mr-1" />
+                        <span className="text-sm font-bold text-gray-800">
                           {packageDetails.rating}
                         </span>
                       </div>
@@ -145,7 +147,7 @@ const PackageDetailsModal = ({
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {packageDetails.highlights.map((highlight, index) => (
                     <div key={index} className="flex items-center space-x-2">
-                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                      <CheckCircle className="w-5 h-5 text-ceylon-teal flex-shrink-0" />
                       <span className="text-gray-600">{highlight}</span>
                     </div>
                   ))}
@@ -160,7 +162,7 @@ const PackageDetailsModal = ({
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {packageDetails.inclusions.map((inclusion, index) => (
                     <div key={index} className="flex items-center space-x-2">
-                      <Plane className="w-5 h-5 text-blue-500 flex-shrink-0" />
+                      <Plane className="w-5 h-5 text-ceylon-teal flex-shrink-0" />
                       <span className="text-gray-600">{inclusion}</span>
                     </div>
                   ))}
@@ -176,10 +178,10 @@ const PackageDetailsModal = ({
                   {packageDetails.itinerary.map((day, index) => (
                     <div
                       key={index}
-                      className="border-l-4 border-blue-500 pl-4"
+                      className="border-l-4 border-ceylon-gold pl-4"
                     >
                       <div className="flex items-center space-x-2 mb-1">
-                        <span className="bg-blue-500 text-white text-sm font-semibold px-2 py-1 rounded">
+                        <span className="bg-ceylon-gold text-ceylon-dark text-xs font-bold px-2 py-1 rounded">
                           Day {day.day}
                         </span>
                         <h4 className="font-semibold text-gray-800">
@@ -208,7 +210,7 @@ const PackageDetailsModal = ({
                           key={index}
                           className="flex items-center space-x-2"
                         >
-                          <Wifi className="w-4 h-4 text-green-500 flex-shrink-0" />
+                          <Wifi className="w-4 h-4 text-ceylon-teal flex-shrink-0" />
                           <span className="text-gray-600 text-sm">
                             {feature}
                           </span>
@@ -228,7 +230,7 @@ const PackageDetailsModal = ({
                   <div className="space-y-2">
                     {packageDetails.priceIncludes.map((item, index) => (
                       <div key={index} className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                        <CheckCircle className="w-4 h-4 text-ceylon-teal flex-shrink-0" />
                         <span className="text-gray-600 text-sm">{item}</span>
                       </div>
                     ))}
@@ -241,7 +243,7 @@ const PackageDetailsModal = ({
                   <div className="space-y-2">
                     {packageDetails.priceExcludes.map((item, index) => (
                       <div key={index} className="flex items-center space-x-2">
-                        <X className="w-4 h-4 text-red-500 flex-shrink-0" />
+                        <X className="w-4 h-4 text-ceylon-clay flex-shrink-0" />
                         <span className="text-gray-600 text-sm">{item}</span>
                       </div>
                     ))}
@@ -286,10 +288,10 @@ const PackageDetailsModal = ({
                 </div> */}
               </div>
               <div className="flex gap-3">
-                <button className="px-6 py-2 border-2 border-red-600 text-red-600 rounded-lg font-semibold hover:bg-red-600 hover:text-white transition-colors">
+                <button className="px-6 py-2 border-2 border-ceylon-clay text-ceylon-clay rounded-lg font-bold text-xs uppercase tracking-widest hover:bg-ceylon-clay hover:text-white transition-colors">
                   CALL NOW 0776772710
                 </button>
-                <button className="px-6 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition-colors">
+                <button className="px-6 py-2 bg-ceylon-teal text-white rounded-lg font-bold text-xs uppercase tracking-widest hover:bg-ceylon-dark transition-colors">
                   SUBMIT INQUIRY
                 </button>
               </div>
