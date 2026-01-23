@@ -17,6 +17,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { useState } from "react";
+import { useForm, ValidationError } from '@formspree/react';
 
 // Form data type
 interface FormData {
@@ -35,6 +36,7 @@ const Contact = () => {
   });
 
   // Form state
+  // Form data state for controlled inputs
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
@@ -44,55 +46,11 @@ const Contact = () => {
     message: "",
   });
 
-  // Form validation and submission state
+  // Client-side validation state
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<
-    "idle" | "success" | "error"
-  >("idle");
 
-  // Send email via Gmail SMTP API
-  const sendEmailViaGmail = async (formData: FormData) => {
-    const response = await fetch("/api/send-email", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error || "Failed to send email");
-    }
-
-    return await response.json();
-  };
-
-  // Create mailto link as fallback
-  const createMailtoLink = (formData: FormData) => {
-    const subject = `New Contact Form Submission - ${formData.destination}`;
-    const body = `
-Hello Ceylon Shine Travel Team,
-
-You have received a new contact form submission:
-
-Name: ${formData.firstName} ${formData.lastName}
-Email: ${formData.email}
-Phone: ${formData.phone}
-Destination Interest: ${formData.destination}
-
-Message:
-${formData.message}
-
----
-This message was sent from the Ceylon Shine Travel website contact form.
-    `.trim();
-
-    return `mailto:geethakasandesh95@gmail.com?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
-  };
+  // Formspree hook
+  const [state, handleSubmit] = useForm("maqedpjk");
 
   // Handle input changes
   const handleInputChange = (
@@ -154,40 +112,28 @@ This message was sent from the Ceylon Shine Travel website contact form.
   };
 
   // Handle form submission
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Handle form submission
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!validateForm()) {
       return;
     }
 
-    setIsSubmitting(true);
-    setSubmitStatus("idle");
+    // Call Formspree submit handler
+    await handleSubmit(e);
 
-    try {
-      try {
-        await sendEmailViaGmail(formData);
-        setSubmitStatus("success");
-      } catch (gmailError) {
-        console.warn("Gmail API failed, falling back to mailto:", gmailError);
-        const mailtoLink = createMailtoLink(formData);
-        window.open(mailtoLink, "_blank");
-        setSubmitStatus("success");
-      }
-
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        destination: "",
-        message: "",
-      });
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      setSubmitStatus("error");
-    } finally {
-      setIsSubmitting(false);
+    // Optional: clear form data on success happens in the success view or manually here if needed
+    // But since we switch views on success, clearing simple inputs might not be strictly necessary immediately
+    if (state.succeeded) {
+        setFormData({
+            firstName: "",
+            lastName: "",
+            email: "",
+            phone: "",
+            destination: "",
+            message: "",
+        });
     }
   };
 
@@ -311,7 +257,7 @@ This message was sent from the Ceylon Shine Travel website contact form.
           <div className="lg:col-span-7 relative">
           
             <AnimatePresence mode="wait">
-              {submitStatus === "success" ? (
+              {state.succeeded ? (
                 <motion.div
                   key="success"
                   initial={{ opacity: 0, scale: 0.95 }}
@@ -330,7 +276,7 @@ This message was sent from the Ceylon Shine Travel website contact form.
                     </p>
                   </div>
                   <button 
-                    onClick={() => setSubmitStatus("idle")}
+                    onClick={() => window.location.reload()}
                     className="text-[10px] uppercase tracking-[0.4em] font-black text-ceylon-teal hover:text-ceylon-dark transition-colors"
                   >
                     Send another message
@@ -347,7 +293,7 @@ This message was sent from the Ceylon Shine Travel website contact form.
                   {/* Form Glow Effect */}
                   <div className="absolute -top-24 -right-24 w-64 h-64 bg-ceylon-gold/10 blur-[100px] rounded-full pointer-events-none" />
                   
-                  <form onSubmit={handleSubmit} className="space-y-10 relative z-10">
+                  <form onSubmit={handleFormSubmit} className="space-y-10 relative z-10">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                       <div className="relative group">
                         <label className="absolute -top-3 left-6 bg-white px-2 text-[10px] uppercase tracking-[0.2em] text-ceylon-teal font-black z-10">First Name</label>
@@ -440,11 +386,11 @@ This message was sent from the Ceylon Shine Travel website contact form.
                         boxShadow: "0 20px 40px -10px rgba(29, 162, 160, 0.4)"
                       }}
                       whileTap={{ scale: 0.98 }}
-                      disabled={isSubmitting}
+                      disabled={state.submitting}
                       className="w-full py-6 bg-ceylon-teal text-white rounded-3xl text-[10px] uppercase tracking-[0.5em] font-black shadow-2xl overflow-hidden relative group"
                     >
                       <span className="relative z-10 flex items-center justify-center gap-3">
-                        {isSubmitting ? (
+                        {state.submitting ? (
                           <>Preparing Wings... <Compass className="animate-spin" size={16}/></>
                         ) : (
                           <>Start the Journey <Send size={14} /></>
